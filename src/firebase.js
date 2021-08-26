@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import $ from "jquery";
+//import $ from "jquery";
 import router from "./router/index.js";
 
 /* firebase */

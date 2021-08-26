@@ -1,30 +1,53 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">Test</router-link>
-  </div>
-  <router-view/>
+    <div id="router-parent" class="flex flex-row">
+        <div id="navbar-spacer" class="w-1/25 min-w-48px h-screen"></div>
+        <Navbar></Navbar>
+        <router-view />
+    </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Navbar from "@/components/Navbar.vue";
+import { auth, db } from "@/firebase.js";
+import { ref, onMounted, watch } from "vue";
+import $ from "jquery";
 
-#nav {
-  padding: 30px;
-}
+export default {
+    name: "App",
+    components: {
+        Navbar,
+    },
+    setup() {
+        const currentUser = ref({});
+        const darkmode = ref(false);
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+        watch(darkmode, () => {
+            if (darkmode.value) {
+                $("#router-parent").addClass("dark");
+            } else {
+                $("#router-parent").removeClass("dark");
+            }
+        });
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+        onMounted(() => {
+            auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    // signed in
+                    currentUser.value = user;
+                    db.collection("users")
+                        .doc(currentUser.value.uid)
+                        .onSnapshot((doc) => {
+                            darkmode.value = doc.data()?.darkmode;
+                        });
+                } else {
+                    // not signed in
+                    currentUser.value = false;
+                    darkmode.value = false;
+                }
+            });
+        });
+
+        return { currentUser, darkmode };
+    },
+};
+</script>

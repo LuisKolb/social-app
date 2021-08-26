@@ -79,22 +79,22 @@ export function signOut() {
 //        .get();
 //    return foundUser.data();
 //};
-//
-//// user preferences
-//export async function getDarkMode(uid) {
-//    const ret = await db
-//        .collection("users")
-//        .doc(uid)
-//        .get();
-//    return ret.data().darkmode;
-//}
-//
-//export function updateDarkmode(uid, value) {
-//    db.collection("users")
-//        .doc(uid)
-//        .update({ darkmode: value });
-//}
-//
+
+// user preferences
+export async function getDarkMode(uid) {
+    const ret = await db
+        .collection("users")
+        .doc(uid)
+        .get();
+    return ret.data().darkmode;
+}
+
+export function updateDarkmode(uid, value) {
+    db.collection("users")
+        .doc(uid)
+        .update({ darkmode: value });
+}
+
 //// messages
 //export async function sendMessage(text, groupID) {
 //    db.collection("messagecoll")

@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
 
 const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home,
+        component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     },
     {
         path: "/about",
@@ -14,10 +13,15 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    }, 
+    {
+        path: "/preferences",
+        name: "Preferences",
+        component: () => import(/* webpackChunkName: "preferences" */ "../views/Preferences.vue"),
     },
     {   path: "/:pathMatch(.*)", 
         name: "NotFound", 
-        component: Home 
+        component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"), 
     },
 ];
 

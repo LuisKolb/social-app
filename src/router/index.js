@@ -17,6 +17,16 @@ const routes = [
         component: () => import(/* webpackChunkName: "oracle" */ "../views/Oracle.vue"),
     },
     {
+        path: "/kanban",
+        name: "Kanban",
+        component: () => import(/* webpackChunkName: "kanban" */ "../views/Kanban.vue"),
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: () => import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
+    },
+    {
         path: "/preferences",
         name: "Preferences",
         component: () => import(/* webpackChunkName: "preferences" */ "../views/Preferences.vue"),

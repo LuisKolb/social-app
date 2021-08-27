@@ -209,68 +209,48 @@ export const joinGlobalChat = async function(currUser) {
         });
 };
 
-//const createGlobalChatIfNotExists = async function() {
-//    var groupsRef = db.collection("groups").doc("global")
-//    groupsRef.set({
-//        id: "global",
-//        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//        createdBy: "admin",
-//        members: [],
-//        name: "Global Chat",
-//        type: "group",
-//        recentMessage: {
-//            text: "",
-//            readBy: [],
-//            sentAt: "",
-//            sentBy: "",
-//        },
-//    });
-//    return "Created Global Chat.";
-//};
-//createGlobalChatIfNotExists();
+// kanban
+export async function addItem(text) {
+    db.collection("kanban-items").add({
+        text: text,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid: auth.currentUser.uid,
+        state: "To Do",
+        tags: [],
+    });
+}
 
-//// kanban
-//export async function addItem(text) {
-//    db.collection("kanban-items").add({
-//        text: text,
-//        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//        uid: auth.currentUser.uid,
-//        state: "To Do",
-//        tags: [],
-//    });
-//}
-//
-//export async function modifyItemState(id, newState) {
-//    db.collection("kanban-items")
-//        .doc(id)
-//        .update({ state: newState });
-//}
-//
-//export async function addTagToItem(id, newTag) {
-//    db.collection("kanban-items")
-//        .doc(id)
-//        .update({ tags: firebase.firestore.FieldValue.arrayUnion(newTag) });
-//}
-//
-//export async function removeTagFromItem(id, delTag) {
-//    db.collection("kanban-items")
-//        .doc(id)
-//        .update({ tags: firebase.firestore.FieldValue.arrayRemove(delTag) });
-//}
-//
-//export async function removeItem(id) {
-//    db.collection("kanban-items")
-//        .doc(id)
-//        .delete();
-//}
-//
-//export async function removeAllDone() {
-//    db.collection("kanban-items")
-//        .where("state", "==", "Done")
-//        .get()
-//        .then(function(querySnapshot) {
-//            querySnapshot.forEach(function(doc) {
-//                doc.ref.delete();
-//            });
-//        });
-//}
+export async function modifyItemState(id, newState) {
+    db.collection("kanban-items")
+        .doc(id)
+        .update({ state: newState });
+}
+
+export async function addTagToItem(id, newTag) {
+    db.collection("kanban-items")
+        .doc(id)
+        .update({ tags: firebase.firestore.FieldValue.arrayUnion(newTag) });
+}
+
+export async function removeTagFromItem(id, delTag) {
+    db.collection("kanban-items")
+        .doc(id)
+        .update({ tags: firebase.firestore.FieldValue.arrayRemove(delTag) });
+}
+
+export async function removeItem(id) {
+    db.collection("kanban-items")
+        .doc(id)
+        .delete();
+}
+
+export async function removeAllDone() {
+    db.collection("kanban-items")
+        .where("state", "==", "Done")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                doc.ref.delete();
+            });
+        });
+}

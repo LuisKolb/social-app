@@ -31,18 +31,20 @@
             </router-link>
             -->
             <router-link class="p-3 text-xs w-full h-full flex flex-col items-center" to="/profile" v-if="loggedIn">
-                <img class="w-6 h-6 rounded-full" :src="userPhotoURL || require('@/assets/default-user-photo.jpg')" v-if="loggedIn" alt="User Photo" />
+                <img class="w-6 h-6 md:mb-2 rounded-full" :src="userPhotoURL || require('@/assets/default-user-photo.jpg')" v-if="loggedIn" alt="User Photo" />
             </router-link>
             <a class="p-3 text-xs w-full h-full flex flex-col items-center" @click="doSignInWithGoogle" v-if="!loggedIn">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
             </a>
+            <!--
             <a class="p-3 text-xs w-full h-full flex flex-col items-center" @click="doSignOut" v-if="loggedIn">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                 </svg>
             </a>
+            -->
         </div>
     </div>
 </template>
@@ -66,7 +68,7 @@ export default {
             } else loggedIn.value = false;
         });
 
-        return { doSignInWithGoogle, doSignOut, loggedIn, userPhotoURL }
+        return { doSignInWithGoogle, doSignOut, loggedIn, userPhotoURL };
     },
 };
 </script>

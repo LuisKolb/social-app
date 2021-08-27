@@ -17,7 +17,7 @@ npm run serve
 ```
 npm run build && npx serve dist
 
-npm run build && firebase emulators:start
+npm run build && npm run emulators
 ```
 
 ### Kill all firebase emulators to free up ports in case of incomplete shutdown

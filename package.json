@@ -1,6 +1,6 @@
 {
-    "name": "social-app-2",
-    "version": "0.1.0",
+    "name": "social-app",
+    "version": "1.0.0",
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",

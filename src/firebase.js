@@ -17,10 +17,11 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-export const db = firebase.firestore();
+export var db = firebase.firestore();
 if (location.hostname === "localhost") {
-    db.useEmulator("localhost", 8081);
+    db.useEmulator("localhost", 8080);
 }
+
 export const auth = firebase.auth();
 if (location.hostname === "localhost") {
     auth.useEmulator("http://localhost:9099");
@@ -70,15 +71,15 @@ export function signOut() {
 //        }
 //    });
 //}
-//
-//// users
-//export const getUser = async function(uid) {
-//    const foundUser = await db
-//        .collection("users")
-//        .doc(uid)
-//        .get();
-//    return foundUser.data();
-//};
+
+// users
+export const getUser = async function(uid) {
+    const foundUser = await db
+        .collection("users")
+        .doc(uid)
+        .get();
+    return foundUser.data();
+};
 
 // user preferences
 export async function getDarkMode(uid) {
@@ -95,96 +96,127 @@ export function updateDarkmode(uid, value) {
         .update({ darkmode: value });
 }
 
-//// messages
-//export async function sendMessage(text, groupID) {
-//    db.collection("messagecoll")
-//        .doc(groupID)
-//        .collection("messages")
-//        .add({
-//            text: text,
-//            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//            creatorUID: auth.currentUser.uid,
-//            photoURL: auth.currentUser.photoURL,
-//            displayName: auth.currentUser.displayName,
-//        });
-//    db.collection("groups")
-//        .doc(groupID)
-//        .update({
-//            recentMessage: {
-//                text: text,
-//                sentAt: firebase.firestore.FieldValue.serverTimestamp(),
-//                sentBy: auth.currentUser.uid,
-//            },
-//            readBy: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid),
-//        });
-//}
-//
-//export async function readGroup(groupID) {
-//    db.collection("groups")
-//        .doc(groupID)
-//        .update({
-//            readBy: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid),
-//        });
-//}
-//
-//export const newPrivateChat = async function(currUser, targetUID) {
-//    const user_entry = await db
-//        .collection("users")
-//        .doc(currUser.uid)
-//        .get();
-//    const target_entry = await db
-//        .collection("users")
-//        .doc(targetUID)
-//        .get();
-//    if (!target_entry.exists) {
-//        // check if user exists
-//        return "User does not exist in DB! ❌";
-//    } else if (currUser.uid == targetUID) {
-//        // check if user ids are the same
-//        return "Cannot add yourself! 😉";
-//    } else if (user_entry.data().friends && user_entry.data().friends.includes(targetUID)) {
-//        // check if user is already a friend
-//        return "Already friends with this user! 😄";
-//    } else {
-//        // add the user to friends
-//        db.collection("users")
-//            .doc(currUser.uid)
-//            .update({ friends: firebase.firestore.FieldValue.arrayUnion(targetUID) });
-//
-//        db.collection("users")
-//            .doc(targetUID)
-//            .update({ friends: firebase.firestore.FieldValue.arrayUnion(currUser.uid) });
-//        // add a new group
-//        var groupsRef = db.collection("groups").doc();
-//        var autoid = groupsRef.id;
-//        groupsRef.set({
-//            id: autoid,
-//            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//            createdBy: currUser.uid,
-//            members: [currUser.uid, targetUID],
-//            name: target_entry.data().displayName,
-//            photoURL: target_entry.data().photoURL,
-//            type: "private",
-//            recentMessage: {
-//                text: "",
-//                readBy: [],
-//                sentAt: "",
-//                sentBy: "",
-//            },
-//        });
-//        return "Added new user! ✨";
-//    }
-//};
-//
-//export const newGroupChat = async function(currUser, memberArr, name) {
-//    var groupsRef = db.collection("groups").doc();
-//    var autoid = groupsRef.id;
+// messages
+export async function sendMessage(text, groupID) {
+    db.collection("messagecoll")
+        .doc(groupID)
+        .collection("messages")
+        .add({
+            text: text,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            creatorUID: auth.currentUser.uid,
+            photoURL: auth.currentUser.photoURL,
+            displayName: auth.currentUser.displayName,
+        });
+    db.collection("groups")
+        .doc(groupID)
+        .update({
+            recentMessage: {
+                text: text,
+                sentAt: firebase.firestore.FieldValue.serverTimestamp(),
+                sentBy: auth.currentUser.uid,
+            },
+            readBy: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid),
+        });
+}
+
+export async function readGroup(groupID) {
+    db.collection("groups")
+        .doc(groupID)
+        .update({
+            readBy: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.uid),
+        });
+}
+
+export const newPrivateChat = async function(currUser, targetUID) {
+    const user_entry = await db
+        .collection("users")
+        .doc(currUser.uid)
+        .get();
+    const target_entry = await db
+        .collection("users")
+        .doc(targetUID)
+        .get();
+    if (!target_entry.exists) {
+        // check if user exists
+        return "User does not exist in DB! ❌";
+    } else if (currUser.uid == targetUID) {
+        // check if user ids are the same
+        return "Cannot add yourself! 😉";
+    } else if (user_entry.data().friends && user_entry.data().friends.includes(targetUID)) {
+        // check if user is already a friend
+        return "Already friends with this user! 😄";
+    } else {
+        // add the user to friends
+        db.collection("users")
+            .doc(currUser.uid)
+            .update({ friends: firebase.firestore.FieldValue.arrayUnion(targetUID) });
+
+        db.collection("users")
+            .doc(targetUID)
+            .update({ friends: firebase.firestore.FieldValue.arrayUnion(currUser.uid) });
+        // add a new group
+        var groupsRef = db.collection("groups").doc();
+        var autoid = groupsRef.id;
+        groupsRef.set({
+            id: autoid,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdBy: currUser.uid,
+            members: [currUser.uid, targetUID],
+            name: target_entry.data().displayName,
+            photoURL: target_entry.data().photoURL,
+            type: "private",
+            recentMessage: {
+                text: "",
+                readBy: [],
+                sentAt: "",
+                sentBy: "",
+            },
+        });
+        return "Added new user! ✨";
+    }
+};
+
+export const newGroupChat = async function(currUser, memberArr, name) {
+    var groupsRef = db.collection("groups").doc();
+    var autoid = groupsRef.id;
+    groupsRef.set({
+        id: autoid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: currUser.uid,
+        members: memberArr,
+        name: name,
+        type: "group",
+        recentMessage: {
+            text: "",
+            readBy: [],
+            sentAt: "",
+            sentBy: "",
+        },
+    });
+    return "Created new Group! ✨";
+};
+
+export const joinGlobalChat = async function(currUser) {
+    // add global to friends
+    db.collection("users")
+        .doc(currUser.uid)
+        .update({ friends: firebase.firestore.FieldValue.arrayUnion("global") });
+    db.collection("groups")
+        .doc("global")
+        .update({
+            members: firebase.firestore.FieldValue.arrayUnion(currUser.uid),
+        });
+};
+
+//const createGlobalChatIfNotExists = async function() {
+//    var groupsRef = db.collection("groups").doc("global")
 //    groupsRef.set({
-//        id: autoid,
+//        id: "global",
 //        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-//        createdBy: currUser.uid,
-//        members: memberArr,
-//        name: name,
+//        createdBy: "admin",
+//        members: [],
+//        name: "Global Chat",
 //        type: "group",
 //        recentMessage: {
 //            text: "",
@@ -193,21 +225,10 @@ export function updateDarkmode(uid, value) {
 //            sentBy: "",
 //        },
 //    });
-//    return "Created new Group! ✨";
+//    return "Created Global Chat.";
 //};
-//
-//export const joinGlobalChat = async function(currUser) {
-//    // add global to friends
-//    db.collection("users")
-//        .doc(currUser.uid)
-//        .update({ friends: firebase.firestore.FieldValue.arrayUnion("global") });
-//    db.collection("groups")
-//        .doc("global")
-//        .update({
-//            members: firebase.firestore.FieldValue.arrayUnion(currUser.uid),
-//        });
-//};
-//
+//createGlobalChatIfNotExists();
+
 //// kanban
 //export async function addItem(text) {
 //    db.collection("kanban-items").add({

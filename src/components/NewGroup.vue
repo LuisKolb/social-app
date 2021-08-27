@@ -48,7 +48,6 @@ export default {
                             users.value.push(doc);
                         });
                     });
-                    console.log(currentUser.value);
                 }
             });
         });

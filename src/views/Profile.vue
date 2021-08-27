@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen w-24/25 justify-center items-start md:items-center bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-100">
+    <div class="flex h-screen md:h-screen w-full md:w-24/25 justify-center items-start md:items-center bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-100">
         <div class="flex flex-col gap-y-8 text-center p-8 mt-8 md:mt-0 mx-4 rounded-xl shadow-md hover:shadow-xl z-10 bg-gray-300 dark:bg-gray-800">
             <div v-if="currentUser" class="flex flex-col md:flex-row items-center gap-x-4 text-left">
                 <div class="mb-4 md:mb-0">

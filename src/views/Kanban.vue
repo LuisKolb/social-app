@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center flex-auto w-full overflow-y-auto bg-gray-200 dark:bg-gray-700 dark:text-gray-200" id="#kanban" v-if="loggedIn" @click="dismissModal">
+    <div class="flex flex-col items-center flex-auto w-full h-screen overflow-y-auto bg-gray-200 dark:bg-gray-700 dark:text-gray-200" id="#kanban" v-if="loggedIn" @click="dismissModal">
         <div class="flex flex-col md:flex-row items-center z-20">
             <div class="relative inline-block md:mr-4 text-left">
                 <button @blur="closeDropdown" @click="toggleDropdown" type="button" class="mt-2 md:mt-0 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-100 dark:bg-gray-700 dark:text-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 dark:focus:ring-offset-transparent focus:ring-blue-600" id="options-menu" aria-haspopup="true" aria-expanded="true">

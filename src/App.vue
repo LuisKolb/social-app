@@ -1,6 +1,7 @@
 <template>
-    <div id="router-parent" class="flex flex-row">
-        <div id="navbar-spacer" class="w-1/25 min-w-48px h-screen"></div>
+    <div id="router-parent" class="flex flex-col md:flex-row">
+        <div id="navbar-spacer-left" class="hidden md:block w-1/25 min-w-48px h-screen"></div>
+        <div id="navbar-spacer-bottom" class="md:hidden w-full h-12 absolute bottom-0"></div>
         <Navbar></Navbar>
         <router-view />
     </div>

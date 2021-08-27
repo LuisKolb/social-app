@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-row h-screen w-24/25 justify-center items-center bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-100" v-if="content.loggedIn">
+    <div class="flex flex-row h-screen md:h-screen w-full md:w-24/25 justify-center items-center bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-100" v-if="content.loggedIn">
         <div id="friendslist" class="hover:text-opacity-100 md:flex flex-col flex-none h-screen w-full md:w-1/5 overflow-y-auto">
             <div class="p-2 bg-gray-100 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-400 cursor-pointer" @click="openUserList">
                 👋 new conversation

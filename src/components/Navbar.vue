@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col justify-between w-1/25 min-w-48px h-screen fixed bg-gray-300 dark:bg-gray-900 text-gray-700 dark:text-gray-200 overflow-y-auto overflow-x-hidden">
-        <div class="flex flex-col">
+    <div class="flex flex-row md:flex-col justify-between w-screen md:w-1/25 md:min-w-48px h-12 md:h-screen fixed bottom-0 bg-gray-300 dark:bg-gray-900 text-gray-700 dark:text-gray-200 overflow-y-auto overflow-x-hidden">
+        <div class="flex flex-row md:flex-col">
             <router-link class="p-3 w-full h-full flex flex-col items-center" to="/">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -35,13 +35,13 @@
             </router-link>
             <a class="p-3 text-xs w-full h-full flex flex-col items-center" @click="doSignInWithGoogle" v-if="!loggedIn">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                 </svg>
             </a>
             <!--
             <a class="p-3 text-xs w-full h-full flex flex-col items-center" @click="doSignOut" v-if="loggedIn">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
             </a>
             -->

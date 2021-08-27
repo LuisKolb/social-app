@@ -33,5 +33,5 @@ npm run build && firebase emulators:start
 
 Kill all firebase emulators to free up ports:
 ```
-lsof -ti :8081 -ti :5000 -ti :4000 -ti :5001 -ti :9099 | xargs --no-run-if-empty kill 
+lsof -ti :8081 -ti :5000 -ti :4000 -ti :5001 -ti :9099 -ti :8080 | xargs --no-run-if-empty kill 
 ```

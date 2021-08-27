@@ -31,7 +31,7 @@
             </router-link>
             -->
             <router-link class="p-3 text-xs w-full h-full flex flex-col items-center" to="/profile" v-if="loggedIn">
-                <img class="w-6 h-6 md:mb-2 rounded-full" :src="userPhotoURL || require('@/assets/default-user-photo.jpg')" v-if="loggedIn" alt="User Photo" />
+                <img class="w-6 h-6 rounded-full" :src="userPhotoURL || require('@/assets/default-user-photo.jpg')" v-if="loggedIn" alt="User Photo" />
             </router-link>
             <a class="p-3 text-xs w-full h-full flex flex-col items-center" @click="doSignInWithGoogle" v-if="!loggedIn">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,6 +76,9 @@ export default {
 <style scoped>
 a.router-link-exact-active {
     background-color: rgba(0, 0, 0, 0.1);
+}
+#router-parent.dark a.router-link-exact-active {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 a.router-link-exact-active svg {

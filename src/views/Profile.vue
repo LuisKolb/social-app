@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="">
-                <button id="darkmode-button" @click="doToggleDarkmode" class="p-2 w-full rounded-md border-2 border-gray-200 bg-gray-200 dark:bg-gray-700 dark:border-gray-700 shadow-sm">Lights {{ darkmode ? "Off 🌙" : "On ☀" }}</button>
+                <button id="darkmode-button" @click="doToggleDarkmode" class="p-2 w-full rounded-md border-2 border-gray-200 bg-gray-200 dark:bg-gray-700 dark:border-gray-700 shadow-sm">Lights are {{ darkmode ? "Off 🌙" : "On ☀" }}</button>
             </div>
             <div class="">
                 <button id="logout-button" @click="signOut" class="p-2 w-full rounded-md border-2 border-red-600 text-red-600">Sign Out</button>

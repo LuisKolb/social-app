@@ -5,5 +5,8 @@
       <br />
       <img class="inline h-4 w-4" src="@/assets/logo.png" alt="vue" /> + 🔥 + 🌬 = 💘
     </div>
+    <div class="absolute left-16 bottom-4 truncate">
+      👈 pssst! check out your profile here!
+    </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ import "firebase/compat/firestore";
 //import $ from "jquery";
 import router from "./router/index.js";
 
-/* firebase */
+// firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAF8qBBgDDrfvKUo6pQeEjyMfbZDJ1k3so",
     authDomain: "social-app-ddf21.firebaseapp.com",

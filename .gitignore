@@ -2,6 +2,7 @@
 node_modules
 /dist
 /emulator-data
+/.firebase
 
 
 # local env files

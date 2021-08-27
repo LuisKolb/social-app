@@ -13,7 +13,7 @@
             <div v-if="u.data().displayName" @click="doNewPrivateChat(u.id)" class="p-2 cursor-pointer break-words dark:text-gray-200">
                 <img class="rounded-full w-6 h-6 mr-2 inline" :src="(u.data().photoURL != '' && u.data().photoURL) || require('@/assets/default-user-photo.jpg')" alt="userPhoto" referrerpolicy="no-referrer" />
 
-                {{ u.data().displayName }} <!-- <div v-if="u.data().uid === currentUser.value.data().uid">(you!)</div> -->
+                {{ u.data().displayName }} <span v-if="u.data().uid === currentUser.uid">(you!)</span>
             </div>
         </div>
     </div>
@@ -29,6 +29,8 @@ export default {
     setup() {
         const users = ref([]);
         const currentUser = ref({});
+
+        // TODO navigate back to overview on click
 
         const doNewPrivateChat = async function(targetUID) {
             if (targetUID == "global") {

@@ -26,11 +26,6 @@ const routes = [
         name: "Profile",
         component: () => import(/* webpackChunkName: "profile" */ "../views/Profile.vue"),
     },
-    {
-        path: "/preferences",
-        name: "Preferences",
-        component: () => import(/* webpackChunkName: "preferences" */ "../views/Preferences.vue"),
-    },
     {   path: "/:pathMatch(.*)", 
         name: "NotFound", 
         component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"), 
